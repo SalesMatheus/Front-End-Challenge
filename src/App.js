@@ -1,9 +1,10 @@
-import Login  from './pages/Login/index'
+import Home  from './pages/Home/index'
 function App() {
   return (
-    <h1><Login /></h1>
+    <div className="App">
+        <Home />
+    </div>
   );
 }
 
 export default App;
-
