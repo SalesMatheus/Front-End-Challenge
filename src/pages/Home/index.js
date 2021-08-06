@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Posts from '../../components/Posts';
-import Pagination from '../../components/Pagination';
 import {InputGroup, Button, FormControl} from "react-bootstrap"
 import { BsSearch } from "react-icons/bs";
-import Header from '../../components/Header';
+
+import Header from '../../components/Header/index';
+import Posts from '../../components/Posts/Posts';
+import Pagination from '../../components/Pagination/index';
 
 const Home = () => {
     const [posts, setPosts] = useState([]);
@@ -33,9 +34,8 @@ const Home = () => {
     const paginate = pageNumber => setCurrentPage(pageNumber);
 
     //Filter Search
-    const filterPost = currentPosts.filter(person => person.name.first.includes(search)).map(filteredPerson => (filteredPerson))
+    const filterPost = currentPosts.filter(person => person.name.first.toLocaleUpperCase().includes(search.toLocaleUpperCase())).map(filteredPerson => (filteredPerson))
 
-    
     return(
         <div>
             <Header/>

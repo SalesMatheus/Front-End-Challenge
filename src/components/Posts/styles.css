@@ -1,0 +1,59 @@
+.header {
+	background-image: url("../../assets/bg-pattern-card.svg");
+	background-position: 0px 0px;
+	background-repeat: no-repeat;
+	background-size: 500px 400px;
+	text-align: center;
+}
+
+.img {
+	margin: auto;
+	width: 140px;
+	border: solid white 4px;
+	border-radius: 50%;
+	margin-top: 60px;
+}
+
+.bold-text {
+	font-weight: bold;
+	font-size: 1.1rem;
+	text-align: center;
+	padding: 10px 20px 0px 20px;
+}
+
+.normal-text {
+	font-weight: normal;
+	font-size: 0.95rem;
+	color: hsl(0, 0%, 50%);
+	text-align: center;
+	padding-bottom: 10px;
+}
+
+
+.smaller-text {
+	font-weight: normal;
+	font-size: 0.7rem;
+	color: hsl(0, 0%, 50%);
+	text-align: center;
+	letter-spacing: 1px;
+	padding-bottom: 20px;
+	line-height: 5px;
+}
+
+.social-container {
+	display: flex;
+	border-top: solid rgb(206, 206, 206) 1px;
+	text-align: center;
+}
+
+.first {
+	flex: 1;
+}
+
+.middle {
+	flex: 1;
+}
+
+.last {
+	flex: 1;
+}
