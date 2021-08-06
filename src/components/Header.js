@@ -1,7 +1,7 @@
 import { Navbar, Container, Image } from "react-bootstrap";
 
 
-export default function Head() {
+export default function Header() {
     return (
         <Navbar  bg="dark" variant="dark">
             <Container>
