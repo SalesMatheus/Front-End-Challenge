@@ -1,7 +1,11 @@
-import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import {InputGroup, Button, FormControl} from "react-bootstrap"
-import { BsSearch } from "react-icons/bs";
+import React, 
+        { useState, 
+        useEffect } 
+from 'react';
+import {InputGroup, 
+        FormControl} 
+from "react-bootstrap"
 
 import Header from '../../components/Header/index';
 import Posts from '../../components/Posts/Posts';
@@ -12,7 +16,8 @@ const Home = () => {
     const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(10);
-    const [search, setSearch] = useState('');
+    const [searchName, setSearchName] = useState('');
+    const [searchGender, setSearchGender] = useState('');
     
     useEffect(() => {
         const fetchPosts = async () => {
@@ -33,26 +38,46 @@ const Home = () => {
     // Change page
     const paginate = pageNumber => setCurrentPage(pageNumber);
 
-    //Filter Search
-    const filterPost = currentPosts.filter(person => person.name.first.toLocaleUpperCase().includes(search.toLocaleUpperCase())).map(filteredPerson => (filteredPerson))
+    // Filter Search
+    let filterPost = currentPosts;
 
+    if(searchGender !== ''){
+        filterPost = currentPosts.filter(person => person.gender.toLocaleUpperCase() === searchGender.toLocaleUpperCase()
+        ).map(filteredPerson => (filteredPerson))
+    }else{
+        filterPost = currentPosts.filter(person => 
+            person.name.first.toLocaleUpperCase().includes(searchName.toLocaleUpperCase()) 
+        || person.nat.toLocaleUpperCase().includes(searchName.toLocaleUpperCase())
+        ).map(filteredPerson => (filteredPerson))
+    }
+                                        
     return(
         <div>
             <Header/>
             <div className='container mt-5'>
                 <InputGroup className="mb-3">
+                        <InputGroup.Text variant="outline-secondary">
+                            Name or Nationality
+                        </InputGroup.Text>
                         <FormControl 
-                            onChange={(ev) => setSearch(ev.target.value)}
-                            value={search}
+                            placeholder="Searching ..."
+                            onChange={(ev) => setSearchName(ev.target.value)}
+                            value={searchName}
                         />
-                        <Button variant="outline-secondary" id="button-addon2">
-                            <BsSearch/>
-                        </Button>
+                </InputGroup>
+                <InputGroup className="mb-3">
+                        <InputGroup.Text variant="outline-secondary">
+                            Gender
+                        </InputGroup.Text>
+                        <FormControl 
+                            placeholder="Searching ..."
+                            onChange={(ev) => setSearchGender(ev.target.value)}
+                            value={searchGender}
+                        />
                 </InputGroup>
                 <Posts 
                     posts={filterPost} 
                     loading={loading} 
-                    search={search}
                 />
                 <Pagination 
                     postsPerPage={postsPerPage} 
