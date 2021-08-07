@@ -63,7 +63,7 @@ function MyVerticallyCenteredModal(props) {
             centered
         >
             <header className="header">
-                <img className="img" src={props.detail.picture?.large} />
+                <img className="img" alt="profile" src={props.detail.picture?.large} />
             </header>
             <h1 className="bold-text">
                 {props.detail.name?.title + '. ' + props.detail.name?.first + ' ' + props.detail.name?.last} <span className="normal-text">{props.detail.dob?.age}</span>

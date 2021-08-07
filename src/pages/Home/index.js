@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, 
         { useState, 
         useEffect } 
@@ -10,6 +9,7 @@ from "react-bootstrap"
 import Header from '../../components/Header/index';
 import Posts from '../../components/Posts/Posts';
 import Pagination from '../../components/Pagination/index';
+import api from '../../service/api';
 
 const Home = () => {
     const [posts, setPosts] = useState([]);
@@ -22,7 +22,7 @@ const Home = () => {
     useEffect(() => {
         const fetchPosts = async () => {
             setLoading(true);
-            const res = await axios.get('https://randomuser.me/api?seed=abc&results=50')
+            const res = await api.get('')
             setPosts(res.data.results);
             setLoading(false);
         }
@@ -34,10 +34,10 @@ const Home = () => {
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
     let currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
-    
+
     // Change page
     const paginate = pageNumber => setCurrentPage(pageNumber);
-
+    
     // Filter Search
     let filterPost = currentPosts;
 
@@ -81,8 +81,8 @@ const Home = () => {
                 />
                 <Pagination 
                     postsPerPage={postsPerPage} 
-                    totalPosts={posts.length} 
-                    paginate={paginate} 
+                    totalPosts={posts.length}
+                    paginate={paginate}
                 />
             </div>
         </div>
